@@ -12,7 +12,7 @@
         <!--iTunes Search-->
         <scene sceneID="sZI-Gi-whN">
             <objects>
-                <tableViewController title="iTunes Search" id="lPU-Xf-nYj" customClass="SearchResultsTableViewController" customModule="ios_itunes_search" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="lPU-Xf-nYj" customClass="SearchResultsTableViewController" customModule="ios_itunes_search" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="IVq-y3-rPB">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -28,19 +28,28 @@
                                         <segment title="Music"/>
                                         <segment title="Movies"/>
                                     </segments>
+                                    <connections>
+                                        <action selector="segmentedChanged:" destination="lPU-Xf-nYj" eventType="valueChanged" id="SQI-3l-p4p"/>
+                                    </connections>
                                 </segmentedControl>
                                 <searchBar contentMode="redraw" text="" translatesAutoresizingMaskIntoConstraints="NO" id="FMz-GU-m8j">
-                                    <rect key="frame" x="0.0" y="44" width="453" height="56"/>
+                                    <rect key="frame" x="0.0" y="44" width="414" height="56"/>
                                     <textInputTraits key="textInputTraits"/>
                                     <connections>
                                         <outlet property="delegate" destination="lPU-Xf-nYj" id="9zf-ir-8kO"/>
                                     </connections>
                                 </searchBar>
+                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="2Kr-JK-iLe">
+                                    <rect key="frame" x="197" y="62" width="20" height="20"/>
+                                    <color key="color" red="0.014619763940572739" green="0.54658699035644531" blue="0.98752373456954956" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </activityIndicatorView>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
+                                <constraint firstItem="2Kr-JK-iLe" firstAttribute="centerY" secondItem="FMz-GU-m8j" secondAttribute="centerY" id="76s-Km-xyp"/>
                                 <constraint firstItem="FMz-GU-m8j" firstAttribute="leading" secondItem="UEt-gO-OoC" secondAttribute="leading" id="F2d-RC-prK"/>
                                 <constraint firstItem="Isr-XJ-C8d" firstAttribute="leading" secondItem="UEt-gO-OoC" secondAttribute="leading" id="N3m-mw-VVa"/>
+                                <constraint firstItem="2Kr-JK-iLe" firstAttribute="centerX" secondItem="UEt-gO-OoC" secondAttribute="centerX" id="Oma-jB-ZTv"/>
                                 <constraint firstAttribute="trailing" secondItem="Isr-XJ-C8d" secondAttribute="trailing" id="dnJ-Qj-0gO"/>
                                 <constraint firstItem="Isr-XJ-C8d" firstAttribute="top" secondItem="UEt-gO-OoC" secondAttribute="top" id="kUG-yF-VKa"/>
                                 <constraint firstAttribute="trailing" secondItem="FMz-GU-m8j" secondAttribute="trailing" id="vyc-Zs-Y8L"/>
@@ -80,6 +89,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="iTunes Search" id="4MS-C0-NsN"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="2Kr-JK-iLe" id="skt-TC-Agy"/>
                         <outlet property="searchBar" destination="FMz-GU-m8j" id="oBk-Gj-NUH"/>
                         <outlet property="segmentedControl" destination="Isr-XJ-C8d" id="zLO-Jw-Eee"/>
                     </connections>

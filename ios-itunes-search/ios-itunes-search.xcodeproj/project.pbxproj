@@ -100,6 +100,7 @@
 		E002054F231EF64200AE86F3 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				E0020552231EF82F00AE86F3 /* SearchResult.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -107,6 +108,7 @@
 		E0020550231EF64A00AE86F3 /* Model Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E0020556231EFC2700AE86F3 /* SearchResultController.swift */,
 			);
 			name = "Model Controllers";
 			sourceTree = "<group>";
@@ -114,9 +116,7 @@
 		E0020551231EF81700AE86F3 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				E0020552231EF82F00AE86F3 /* SearchResult.swift */,
 				E0020554231EFB7800AE86F3 /* ResultType.swift */,
-				E0020556231EFC2700AE86F3 /* SearchResultController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";

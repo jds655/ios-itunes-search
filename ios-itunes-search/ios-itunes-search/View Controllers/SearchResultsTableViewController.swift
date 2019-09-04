@@ -13,12 +13,18 @@ class SearchResultsTableViewController: UITableViewController, UISearchBarDelega
     let searchResultsController = SearchResultController()
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
+        activityIndicator.hidesWhenStopped = true
+        //activityIndicator.style = .gray
     }
-
+    @IBAction func segmentedChanged(_ sender: UISegmentedControl) {
+        updateViews()
+    }
+    
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -34,7 +40,11 @@ class SearchResultsTableViewController: UITableViewController, UISearchBarDelega
         return cell
     }
     
-    private func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        updateViews()
+    }
+    
+    private func updateViews() {
         guard let searchText = searchBar.text else { return }
         var resultType: ResultType?
         switch segmentedControl.selectedSegmentIndex {
@@ -47,7 +57,7 @@ class SearchResultsTableViewController: UITableViewController, UISearchBarDelega
         default:
             break
         }
-        
+        activityIndicator.startAnimating()
         searchResultsController.performSearch(searchTerm: searchText, resultType: resultType!) { (error) in
             if let error = error {
                 NSLog("performSearch failed: \(error)")
@@ -57,10 +67,10 @@ class SearchResultsTableViewController: UITableViewController, UISearchBarDelega
                     self.tableView.reloadData()
                 }
             }
+            DispatchQueue.main.async{
+                self.activityIndicator.stopAnimating()
+            }
         }
     }
+    
 }
-
-//extension SearchResultsTableViewController:  {
-//
-//}
