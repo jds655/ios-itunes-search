@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchResultsTableViewController: UITableViewController {
+class SearchResultsTableViewController: UITableViewController, UISearchBarDelegate {
 
     let searchResultsController = SearchResultController()
     @IBOutlet weak var segmentedControl: UISegmentedControl!
@@ -28,15 +28,13 @@ class SearchResultsTableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ResultCell", for: indexPath)
         cell.textLabel?.text = searchResultsController.searchResults[indexPath.row].title
         cell.detailTextLabel?.text = searchResultsController.searchResults[indexPath.row].creator
         return cell
     }
-}
-
-extension SearchResultsTableViewController: UISearchBarDelegate {
-    private func searchBarSearchButtonClicked(searchBar : UISearchBar) {
+    
+    private func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchText = searchBar.text else { return }
         var resultType: ResultType?
         switch segmentedControl.selectedSegmentIndex {
@@ -62,3 +60,7 @@ extension SearchResultsTableViewController: UISearchBarDelegate {
         }
     }
 }
+
+//extension SearchResultsTableViewController:  {
+//
+//}
